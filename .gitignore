@@ -1,0 +1,31 @@
+# Ignore build directories
+build/
+devel/
+install/
+
+# ROS specific
+*.log
+*.db
+*.bak
+*.swp
+*.swo
+
+# CMake and make files
+CMakeCache.txt
+CMakeFiles/
+Makefile
+cmake_install.cmake
+install_manifest.txt
+messages/
+
+# IDE/editor files
+.vscode/
+.idea/
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# ROS workspace specific
+*.stack
