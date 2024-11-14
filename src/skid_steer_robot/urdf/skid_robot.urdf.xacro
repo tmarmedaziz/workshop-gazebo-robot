@@ -220,6 +220,28 @@
     <child link="lidar_link"/>
   </joint>
 
+  <!-- Camera -->
+  <link name="mono_camera_link">
+    <visual>
+      <geometry>
+        <box size="0.03 0.03 0.03"/>
+      </geometry>
+      <material name=""/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.03 0.03 0.03"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <joint name="mono_camera_joint" type="fixed">
+    <origin xyz="0.2 0.0 0.06" rpy="1.57 0 0"/>
+    <parent link="base_link"/>
+    <child link="mono_camera_link"/>
+    <axis xyz="0.0 0.0 0.0"/>
+  </joint>
+
   <!-- Motion Plugin -->
   <gazebo>
     <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
@@ -332,6 +354,92 @@
   </gazebo>
   <gazebo reference="lidar_link">
     <material>Gazebo/Black</material>
+  </gazebo>
+
+  <!-- Camera Plugin-->
+  <gazebo reference="mono_camera_link">
+    <!-- Defines the sensor type and name. The sensor is attached to the camera_link_optical reference -->
+    <sensor type="camera" name="camera">
+
+      <!-- The pose of the camera relative to the reference frame. It includes position (x, y, z) and orientation (roll, pitch, yaw) -->
+      <pose>0 0 0 -1.57 0 0</pose>
+
+      <!-- The update rate in Hz for how often the camera captures images -->
+      <update_rate>30.0</update_rate>
+
+      <!-- Whether to visualize the camera sensor in the Gazebo GUI -->
+      <visualize>true</visualize>
+
+      <!-- Camera-specific parameters -->
+      <camera name="head">
+
+        <!-- The horizontal field of view (in radians) of the camera -->
+        <horizontal_fov>1.3962634</horizontal_fov>
+
+        <!-- Image properties -->
+        <image>
+          <!-- Width of the captured image in pixels -->
+          <width>800</width>
+
+          <!-- Height of the captured image in pixels -->
+          <height>800</height>
+
+          <!-- Format of the image. 'L8' means an 8-bit grayscale image (mono format) -->
+          <format>L8</format>
+        </image>
+
+        <!-- Clipping planes define the near and far boundaries for rendering objects in the camera's view -->
+        <clip>
+          <!-- Minimum distance at which objects are rendered -->
+          <near>0.02</near>
+
+          <!-- Maximum distance at which objects are rendered -->
+          <far>300</far>
+        </clip>
+
+        <!-- Noise settings for simulating realistic sensor noise -->
+        <noise>
+          <!-- Type of noise to apply, in this case, Gaussian noise -->
+          <type>gaussian</type>
+
+          <!-- The mean value of the noise (center of the Gaussian distribution) -->
+          <mean>0.0</mean>
+
+          <!-- The standard deviation of the noise (spread of the Gaussian distribution) -->
+          <stddev>0.007</stddev>
+        </noise>
+      </camera>
+
+      <!-- Plugin to interface the camera with ROS -->
+      <plugin name="camera_controller" filename="libgazebo_ros_camera.so">
+        <!-- Whether the camera is always on -->
+        <alwaysOn>true</alwaysOn>
+
+        <!-- The update rate for the plugin. '0.0' means it updates as fast as possible -->
+        <updateRate>0.0</updateRate>
+
+        <!-- The ROS topic name for the camera images -->
+        <cameraName>/mybot/camera</cameraName>
+
+        <!-- The ROS topic name for the image data (mono format) -->
+        <imageTopicName>image_mono</imageTopicName>
+
+        <!-- The ROS topic name for the camera info (camera parameters) -->
+        <cameraInfoTopicName>camera_info_mono</cameraInfoTopicName>
+
+        <!-- The name of the reference frame associated with the camera -->
+        <frameName>mono_camera_link</frameName>
+
+        <!-- The baseline distance for stereo cameras, irrelevant for mono but sometimes required for plugin configuration -->
+        <hackBaseline>0.07</hackBaseline>
+        <!-- Distortion parameters for camera lens distortion correction (all set to 0.0, indicating no distortion) -->
+        <distortionK1>0.0</distortionK1>
+        <distortionK2>0.0</distortionK2>
+        <distortionK3>0.0</distortionK3>
+        <distortionT1>0.0</distortionT1>
+        <distortionT2>0.0</distortionT2>
+      </plugin>
+    </sensor>
   </gazebo>
   
 </robot>
