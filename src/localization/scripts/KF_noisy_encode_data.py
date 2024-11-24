@@ -3,6 +3,8 @@
 import rospy
 from nav_msgs.msg import Odometry
 import numpy as np
+
+# python3 -m pip install filterpy
 from filterpy.kalman import KalmanFilter
 
 class KalmanFilterNode():
@@ -10,6 +12,7 @@ class KalmanFilterNode():
     def __init__(self):
         rospy.init_node("KalmanFilterNode", anonymous=True)
         self.odom_sub = rospy.Subscriber("noisy_odom_data", Odometry, self.filter_odom)
+        self.filtered_odom_pub = rospy.Publisher("filtered_odom", Odometry, queue_size=10)
 
         # Kalman filter initialization
         self.kf = KalmanFilter(dim_x=4, dim_z=2)
@@ -32,7 +35,7 @@ class KalmanFilterNode():
         ])
         self.kf.predict()
         self.kf.update(z)
-        filtered_msg = msg
+        filtered_msg = odom_msg
         filtered_msg.pose.pose.position.x = self.kf.x[0]
         filtered_msg.pose.pose.position.y = self.kf.x[1]
         filtered_msg.twist.twist.linear.x = self.kf.x[2]
