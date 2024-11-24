@@ -1,0 +1,20 @@
+# sudo apt-get install ros-noetic-robot-localization
+# The published topic name will be /odometry/filtered
+
+frequency: 30
+sensor_timeout: 0.1
+two_d_mode: true
+
+odom0: /filtered_odom
+odom0_config: [true, true, false,
+               false, false, true,
+               true, true, false,
+               false, false, true,
+               false, false, false]
+
+imu0: /imu_data
+imu0_config: [false, false, false,
+              false, false, true,
+              false, false, false,
+              false, false, true,
+              true, false, false]
