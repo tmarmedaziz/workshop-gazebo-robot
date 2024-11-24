@@ -20,19 +20,19 @@ class KalmanFilterNode():
         self.kf.F = np.array([[1., 0., 1., 0.],
                               [0., 1., 0., 1.],
                               [0., 0., 1., 0.],
-                              [0., 0., 0., 1.]])  # state transition matrix
+                              [0., 0., 0., 1.]])  # state transition matrix: defines how the state evolves from one time step to the next.
         self.kf.H = np.array([[1., 0., 0., 0.],
-                              [0., 1., 0., 0.]])  # measurement matrix
-        self.kf.P *= 1000.  # covariance matrix
+                              [0., 1., 0., 0.]])  # measurement matrix: maps the true state of the system to the measured values
+        self.kf.P *= 1000.  # covariance matrix uncertainty of the state estimate. It is updated at each step
         self.kf.R = np.array([[0.1, 0.],
-                              [0., 0.1]])  # measurement noise
-        self.kf.Q = np.eye(4) * 0.01  # process noise
+                              [0., 0.1]])  # measurement noise  the uncertainty or noise in the measurements. It reflects the confidence in the measurements.
+        self.kf.Q = np.eye(4) * 0.01  # process noise ncertainty in the process model. It accounts for errors due to approximations in the system model.
 
     def filter_odom(self, odom_msg):
         z = np.array([
             odom_msg.pose.pose.position.x,
             odom_msg.pose.pose.position.y
-        ])
+        ]) # measurements received from the system (the noisy odometry data)
         self.kf.predict()
         self.kf.update(z)
         filtered_msg = odom_msg
