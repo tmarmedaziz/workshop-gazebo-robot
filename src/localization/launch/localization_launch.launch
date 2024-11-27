@@ -1,4 +1,6 @@
 <launch>
+    <include file="$(find skid_steer_robot)/launch/robot_description.launch"/>
+
     <node name="EncoderData" pkg="localization" type="encode_data.py" output="screen">
         <param name="use_sim_time" value="false" />
     </node>
@@ -17,6 +19,7 @@
 
     <node pkg="robot_localization" type="ekf_localization_node" name="ekf_filter" output="screen">
         <param name="use_sim_time" value="false" />
+        <param name="publish_tf" value="false" />
         <param name="config" value="$(find localization)/scripts/ekf.yaml" />
       </node>
 
