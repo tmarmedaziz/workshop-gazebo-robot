@@ -43,11 +43,31 @@ class KalmanFilterNode():
         filtered_msg.pose.pose.position.x = self.kf.x[0]
         filtered_msg.pose.pose.position.y = self.kf.x[1]
         filtered_msg.twist.twist.linear.x = self.kf.x[2]
+
+        # filtered_msg.twist.twist.linear.y = self.kf.x[3]
+
+        # filtered_msg.pose.covariance = [
+        #     0.01, 0, 0, 0, 0, 0,
+        #     0, 0.01, 0, 0, 0, 0,
+        #     0, 0, 0.01, 0, 0, 0,
+        #     0, 0, 0, 0.01, 0, 0,
+        #     0, 0, 0, 0, 0.01, 0,
+        #     0, 0, 0, 0, 0, 0.01
+        # ]
+        # filtered_msg.twist.covariance = [
+        #     0.01, 0, 0, 0, 0, 0,
+        #     0, 0.01, 0, 0, 0, 0,
+        #     0, 0, 0.01, 0, 0, 0,
+        #     0, 0, 0, 0.01, 0, 0,
+        #     0, 0, 0, 0, 0.01, 0,
+        #     0, 0, 0, 0, 0, 0.01
+        # ]
+
         self.filtered_odom_pub.publish(filtered_msg)
 
         t = rospy.Time.now()
 
-        translation = (0.0, 0.0, 0.0)  
+        translation = (0.2, 0.0, 0.0)  
 
         rotation = (0.0, 0.0, 0.0, 1.0)  
 
@@ -55,8 +75,8 @@ class KalmanFilterNode():
             translation,       
             rotation,          
             t,                 
-            "base_link",        # Child frame
-            "odom"     # Parent frame   
+            "odom",        # Child frame
+            "base_link"     # Parent frame   
         )
 
 if __name__ == '__main__':

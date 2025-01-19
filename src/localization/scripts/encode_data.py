@@ -16,7 +16,7 @@ class OdomPublisher():
         self.theta = 0.0
         self.vx = 0.2
         self.vtheta = 0.1
-        self.rate = rospy.Rate(10)
+        self.rate = rospy.Rate(30)
     
     def publish_odom(self):
         current_time = rospy.Time.now()

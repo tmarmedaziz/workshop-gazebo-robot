@@ -6,7 +6,8 @@ import random
 import math
 
 import tf
-from geometry_msgs.msg import TransformStamped
+# from geometry_msgs.msg import TransformStamped
+import geometry_msgs.msg
 
 class IMUData():
 
@@ -14,7 +15,7 @@ class IMUData():
         rospy.init_node("IMUPublisher", anonymous=True)
         self.imu_publisher = rospy.Publisher("imu_data", Imu, queue_size=10)
         self.tf_broadcaster = tf.TransformBroadcaster() 
-        self.rate = rospy.Rate(10)
+        self.rate = rospy.Rate(30)
 
     def publlish_imu(self):
         imu_msg = Imu()
@@ -24,11 +25,30 @@ class IMUData():
         imu_msg.angular_velocity.x = 0.1 + random.gauss(0, 0.01)
         imu_msg.linear_acceleration.x = 0.2 + random.gauss(0, 0.01)
 
+        # imu_msg.orientation = geometry_msgs.msg.Quaternion()  # Initialize with 0 roll, pitch, yaw
+
+        # imu_msg.orientation_covariance = [
+        #     0.01, 0, 0,
+        #     0, 0.01, 0,
+        #     0, 0, 0.01
+        # ]
+        # imu_msg.angular_velocity_covariance = [
+        #     0.01, 0, 0,
+        #     0, 0.01, 0,
+        #     0, 0, 0.01
+        # ]
+        # imu_msg.linear_acceleration_covariance = [
+        #     0.01, 0, 0,
+        #     0, 0.01, 0,
+        #     0, 0, 0.01
+        # ]
+
+
         self.imu_publisher.publish(imu_msg)
 
         t = rospy.Time.now()
 
-        translation = (0.0, 0.0, 0.0)  
+        translation = (0.0, 0.2, 0.0)  
 
         rotation = (0.0, 0.0, 0.0, 1.0)  
 
