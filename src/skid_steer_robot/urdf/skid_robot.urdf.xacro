@@ -304,16 +304,16 @@
         <scan>
           <horizontal>
             <!-- Number of samples (rays) per scan -->
-            <samples>720</samples>
+            <samples>360</samples>
 
             <!-- Resolution of the scan (typically 1 means 1 ray per angle unit) -->
             <resolution>1</resolution>
 
             <!-- Minimum angle of the scan (in radians, -π/2 for a 180-degree scan) -->
-            <min_angle>-1.570796</min_angle>
+            <min_angle>-3.14159</min_angle>
 
             <!-- Maximum angle of the scan (in radians, π/2 for a 180-degree scan) -->
-            <max_angle>1.570796</max_angle>
+            <max_angle>3.14159</max_angle>
           </horizontal>
         </scan>
 
@@ -445,7 +445,7 @@
   
   <joint name="imu_sensor_joint" type="fixed">
         <axis xyz="0 0 1" />
-        <origin xyz="0.4 0.0 0.06" rpy="0 0 0"/>
+        <origin xyz="0.0 0.0 0.1" rpy="0 0 0"/>
         <parent link="base_link"/>
         <child link="imu_sensor_link"/>
     </joint>
@@ -463,7 +463,7 @@
                 <box size="0.02 0.02 0.02"/>
             </geometry>
                         <material name="red_material">
-                <color rgba="1.0 0.0 0.0 1.0"/> <!-- Red color, fully opaque -->
+                <color rgba="1.0 0.0 0.0 1.0"/> 
             </material>
         </visual>
         <inertial>
