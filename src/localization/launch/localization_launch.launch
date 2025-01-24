@@ -1,7 +1,7 @@
 <launch>
-    <!-- <include file="$(find skid_steer_robot)/launch/robot_description.launch"/> -->
+    <include file="$(find skid_steer_robot)/launch/robot_description.launch"/>
 
-    <node name="EncoderData" pkg="localization" type="encode_data.py" output="screen">
+    <!-- <node name="EncoderData" pkg="localization" type="encode_data.py" output="screen">
         <param name="use_sim_time" value="false" />
     </node>
 
@@ -15,9 +15,9 @@
 
     <node name="EncoderKalmanFilterNode" pkg="localization" type="KF_noisy_encode_data.py" output="screen">
         <param name="use_sim_time" value="false" />
-    </node>
+    </node> -->
 
-    <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_imu_transform" args="10 0 0 0 0 1.5708 base_link imu_link" />
+    <!-- <node pkg="tf2_ros" type="static_transform_publisher" name="base_to_imu_transform" args="10 0 0 0 0 1.5708 base_link imu_link" /> -->
 
     <node pkg="robot_localization" type="ekf_localization_node" name="ekf_filter" output="screen">
         <param name="use_sim_time" value="false" />
