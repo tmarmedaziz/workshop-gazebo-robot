@@ -27,6 +27,7 @@ Here is a screenshot of the robot in the simulation:
 
 ### 2. **Odometry Data Gathering**
 To achieve accurate positioning, I worked on fusing odometry data from the motor encoders and the IMU sensor. An **Extended Kalman Filter (EKF)** was implemented to minimize errors and provide precise position estimates. This fusion ensured smooth and reliable localization in the `odom` frame.
+-> IMU data is now faulty so only ground truth odometry data from gazebo is used
 
 **Key frames involved:**
 - `odom`: Represents the robot's odometry data.
