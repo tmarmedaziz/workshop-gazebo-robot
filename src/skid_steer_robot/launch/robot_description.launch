@@ -15,11 +15,14 @@
   <param name="robot_description" textfile="$(find skid_steer_robot)/urdf/skid_robot.urdf.xacro"/>
 
   <!-- Send robot states to tf -->
-  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="false" output="screen"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
+      <param name="publish_frequency" value="30"/>
+  </node>
 
   <!-- Send  joint values-->
-  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
-    <param name="use_gui" value="true"/>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+      <param name="rate" value="30"/>
+      <param name="use_gui" value="true"/>
   </node>
 
   <arg name="x_pos" default="-2.0"/>
@@ -37,4 +40,5 @@
   <node name="urdf_spawner" pkg="gazebo_ros" type="spawn_model" respawn="false" output="screen"
         args="-urdf -param robot_description -model skid_robot -x $(arg x_pos) -y $(arg y_pos) -z $(arg z_pos)"/>
 
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find skid_steer_robot)/frames_test_config.rviz"/>
 </launch>
