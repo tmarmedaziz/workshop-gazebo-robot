@@ -12,6 +12,6 @@ local_costmap:
 
   static_map: false
   rolling_window: true
-  width: 20
-  height: 20
+  width: 3.0
+  height: 3.0
   resolution: 0.05

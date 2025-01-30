@@ -274,7 +274,7 @@
       <topicName>cmd_vel</topicName>
 
       <!-- Whether to broadcast the transform from the base frame to the wheels -->
-      <broadcastTF>false</broadcastTF>
+      <broadcastTF>true</broadcastTF>
 
       <commandTopic>cmd_vel</commandTopic>
 
