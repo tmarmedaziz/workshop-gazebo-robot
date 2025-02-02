@@ -297,7 +297,7 @@
       <visualize>true</visualize>
 
       <!-- Set the update rate for the sensor in Hz (how often it produces data) -->
-      <update_rate>40</update_rate>
+      <update_rate>30</update_rate>
 
       <!-- Define the ray properties of the sensor (LiDAR emits rays to measure distances) -->
       <ray>
