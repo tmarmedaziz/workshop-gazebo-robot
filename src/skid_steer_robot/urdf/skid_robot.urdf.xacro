@@ -247,7 +247,7 @@
   <gazebo>
     <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
       <!-- Update rate of the plugin in Hz -->
-      <updateRate>100.0</updateRate>
+      <updateRate>30.0</updateRate>
 
       <!-- Namespace for the robot in ROS -->
       <robotNamespace>/</robotNamespace>
@@ -417,7 +417,7 @@
         <alwaysOn>true</alwaysOn>
 
         <!-- The update rate for the plugin. '0.0' means it updates as fast as possible -->
-        <updateRate>0.0</updateRate>
+        <updateRate>30.0</updateRate>
 
         <!-- The ROS topic name for the camera images -->
         <cameraName>/mybot/camera</cameraName>
@@ -484,7 +484,7 @@
                 <frameName>imu_sensor_link</frameName>
                 <topicName>imu_data</topicName>
                 <bodyName>imu_sensor_link</bodyName>
-                <updateRateHZ>10.0</updateRateHZ>
+                <updateRateHZ>30.0</updateRateHZ>
                 <gaussianNoise>0.0</gaussianNoise>
                 <xyzOffset>0 0 0</xyzOffset>
                 <rpyOffset>0 0 0</rpyOffset>
