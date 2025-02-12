@@ -294,7 +294,7 @@
       <pose>0 0 0 0 0 0</pose>
 
       <!-- Enable or disable visualization of the sensor in Gazebo -->
-      <visualize>true</visualize>
+      <visualize>false</visualize>
 
       <!-- Set the update rate for the sensor in Hz (how often it produces data) -->
       <update_rate>30</update_rate>
@@ -304,7 +304,7 @@
         <scan>
           <horizontal>
             <!-- Number of samples (rays) per scan -->
-            <samples>360</samples>
+            <samples>720</samples>
 
             <!-- Resolution of the scan (typically 1 means 1 ray per angle unit) -->
             <resolution>1</resolution>
