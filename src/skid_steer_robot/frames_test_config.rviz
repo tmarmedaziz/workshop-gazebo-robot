@@ -6,7 +6,7 @@ Panels:
       Expanded:
         - /Global Options1
         - /Status1
-        - /Path2
+        - /TF1
       Splitter Ratio: 0.5
     Tree Height: 522
   - Class: rviz/Selection
@@ -64,9 +64,9 @@ Visualization Manager:
         base_link:
           Value: true
         front_left_wheel:
-          Value: false
+          Value: true
         front_right_wheel:
-          Value: false
+          Value: true
         imu_sensor_link:
           Value: false
         lidar_base_link:
@@ -80,9 +80,9 @@ Visualization Manager:
         odom:
           Value: true
         rear_left_wheel:
-          Value: false
+          Value: true
         rear_right_wheel:
-          Value: false
+          Value: true
       Marker Alpha: 1
       Marker Scale: 1
       Name: TF
@@ -145,7 +145,7 @@ Visualization Manager:
       Axes Radius: 0.009999999776482582
       Class: rviz/PoseArray
       Color: 255; 25; 0
-      Enabled: true
+      Enabled: false
       Head Length: 0.07000000029802322
       Head Radius: 0.029999999329447746
       Name: PoseArray
@@ -155,7 +155,7 @@ Visualization Manager:
       Shape: Arrow (Flat)
       Topic: /particlecloud
       Unreliable: false
-      Value: true
+      Value: false
     - Alpha: 0.699999988079071
       Class: rviz/Map
       Color Scheme: map
@@ -338,7 +338,7 @@ Visualization Manager:
           Scale: 1
           Value: true
         Value: true
-      Enabled: true
+      Enabled: false
       Keep: 100
       Name: Odometry
       Position Tolerance: 0.10000000149011612
@@ -355,7 +355,7 @@ Visualization Manager:
         Value: Arrow
       Topic: /odometry/filtered
       Unreliable: false
-      Value: true
+      Value: false
     - Alpha: 1
       Buffer Length: 1
       Class: rviz/Path
@@ -408,7 +408,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 20.673776626586914
+      Distance: 1.4503402709960938
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -416,17 +416,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 2.0999553203582764
-        Y: 3.383146047592163
-        Z: -0.4216427505016327
+        X: -2.525489330291748
+        Y: 1.3483413457870483
+        Z: 4.6771745681762695
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 1.3347963094711304
+      Pitch: 1.3697962760925293
       Target Frame: <Fixed Frame>
-      Yaw: 1.9403979778289795
+      Yaw: 1.9853979349136353
     Saved: ~
 Window Geometry:
   Displays:

@@ -55,6 +55,18 @@
     <axis xyz="0 1 0"/>
   </joint>
 
+  <!-- Transmissions -->
+  <transmission name="front_right_wheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_right_wheel_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_right_wheel_motor">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
   <link name="front_left_wheel">
     <visual>
       <geometry>
@@ -83,6 +95,18 @@
     <origin xyz="0.16 0.16 0.05" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
   </joint>
+
+  <!-- Transmissions -->
+  <transmission name="front_left_wheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_left_wheel_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_left_wheel_motor">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
 
   <link name="rear_right_wheel">
     <visual>
@@ -114,6 +138,18 @@
     <axis xyz="0 1 0"/>
   </joint>
 
+  <!-- Transmissions -->
+  <transmission name="rear_right_wheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rear_right_wheel_joint">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rear_right_wheel_motor">
+    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
   <link name="rear_left_wheel">
     <visual>
       <geometry>
@@ -143,6 +179,18 @@
     <axis xyz="0 1 0"/>
   </joint>
 
+  <!-- Transmissions -->
+  <transmission name="rear_left_wheel_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rear_left_wheel_joint">
+        <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rear_left_wheel_motor">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+
   <link name="base_footprint">
   </link>
 
@@ -151,6 +199,34 @@
     <parent link ="base_footprint"/>
     <child link ="base_link"/>
   </joint>
+
+  <!-- new  -->
+    <gazebo reference="rear_right_wheel">
+      <mu1 value="1.5"/>
+      <mu2 value="1.5"/>
+
+      <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo reference="rear_left_wheel">
+      <mu1 value="1.5"/>
+      <mu2 value="1.5"/>
+  
+      <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo reference="front_right_wheel">
+      <mu1 value="1.5"/>
+      <mu2 value="1.5"/>
+      <material>Gazebo/Red</material>
+    </gazebo>
+
+    <gazebo reference="front_left_wheel">
+      <mu1 value="1.5"/>
+      <mu2 value="1.5"/>
+      <material>Gazebo/Red</material>
+    </gazebo>
+
   <!-- Robot essentials -->
 
   <!-- Base lidar link -->
