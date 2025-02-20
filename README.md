@@ -50,6 +50,15 @@ Here is a screenshot of the AMCL localization process between the initial moment
 
 ---
 
+## Video Showcase
+
+Here is a video demonstrating the navigation of my robot, showcasing how localization via the **AMCL particle filter** improves as the robot moves. The robot navigates to the desired position with better localization accuracy over time.
+
+<img src="assets/rviz-robot-navigation.gif" alt="Demo" width="600"/>
+
+*Note: the parameters for localization and navigation need further optimization.*
+
+
 ## Next Phases
 
 The next steps for this project include:
