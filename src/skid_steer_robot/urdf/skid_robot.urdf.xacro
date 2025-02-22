@@ -1,6 +1,20 @@
 <?xml version="1.0"?>
 <robot name="skid_robot"
   xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <xacro:property name="wheel_kp" value="1000000.0" />
+  <xacro:property name="wheel_kd" value="100.0" />
+  <xacro:property name="wheel_mu1" value="100" />
+  <xacro:property name="wheel_mu2" value="100" />
+  <xacro:property name="wheel_slip1" value="0.5" />
+  <xacro:property name="wheel_slip2" value="0" />
+
+    <xacro:macro name="cylinder_inertia" params="m r h">
+    <inertia ixx="${m*(3*r*r+h*h)/12}" ixy="0" ixz="0"
+             iyy="${m*(3*r*r+h*h)/12}" iyz="0"
+             izz="${m*r*r/2}" />
+  </xacro:macro>
+  
   <!-- Robot essentials -->
   <link name="base_link">
     <inertial>
@@ -40,11 +54,25 @@
         <cylinder radius="0.06" length="0.02"/>
       </geometry>
       <origin rpy="1.5708 0 0"/>
+      <surface>
+        <friction>
+          <fdir1>1 0 0</fdir1>
+          <kp>${wheel_kp}</kp> <!-- kp and kd for rubber -->
+          <kd>${wheel_kd}</kd>
+          <mu>${wheel_mu1}</mu>
+          <mu2>${wheel_mu2}</mu2>
+          <slip1>${wheel_slip1}</slip1>
+          <slip2>${wheel_slip2}</slip2>
+        </friction>
+      </surface>
     </collision>
     <inertial>
       <mass value="1.0"/>
-      <origin rpy="0 0 0"/>
-      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+      <!-- <origin rpy="0 0 0"/>
+      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/> -->
+      <inertia ixx="0.00833" ixy="0" ixz="0"
+              iyy="0.00833" iyz="0"
+              izz="0.005" />
     </inertial>
   </link>
 
@@ -53,16 +81,18 @@
     <child link="front_right_wheel"/>
     <origin xyz="0.16 -0.16 0.05" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
+    <limit lower="0" upper="6.28" effort="100" velocity="10"/>
+
   </joint>
 
   <!-- Transmissions -->
   <transmission name="front_right_wheel_trans">
     <type>transmission_interface/SimpleTransmission</type>
     <joint name="front_right_wheel_joint">
-      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
     </joint>
     <actuator name="front_right_wheel_motor">
-    <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission>
@@ -82,10 +112,25 @@
         <cylinder radius="0.06" length="0.02"/>
       </geometry>
       <origin rpy="1.5708 0 0"/>
+      <surface>
+        <friction>
+          <fdir1>1 0 0</fdir1>
+          <kp>${wheel_kp}</kp> <!-- kp and kd for rubber -->
+          <kd>${wheel_kd}</kd>
+          <mu>${wheel_mu1}</mu>
+          <mu2>${wheel_mu2}</mu2>
+          <slip1>${wheel_slip1}</slip1>
+          <slip2>${wheel_slip2}</slip2>
+        </friction>
+      </surface>
     </collision>
     <inertial>
       <mass value="1.0"/>
-      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+      <!-- <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/> -->
+        <inertia ixx="0.00833" ixy="0" ixz="0"
+           iyy="0.00833" iyz="0"
+           izz="0.005" />
+
     </inertial>
   </link>
 
@@ -94,6 +139,8 @@
     <child link="front_left_wheel"/>
     <origin xyz="0.16 0.16 0.05" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
+    <limit lower="0" upper="6.28" effort="100" velocity="10"/>
+
   </joint>
 
   <!-- Transmissions -->
@@ -123,10 +170,25 @@
         <cylinder radius="0.06" length="0.02"/>
       </geometry>
       <origin rpy="1.5708 0 0"/>
+      <surface>
+        <friction>
+          <fdir1>1 0 0</fdir1>
+          <kp>${wheel_kp}</kp> <!-- kp and kd for rubber -->
+          <kd>${wheel_kd}</kd>
+          <mu>${wheel_mu1}</mu>
+          <mu2>${wheel_mu2}</mu2>
+          <slip1>${wheel_slip1}</slip1>
+          <slip2>${wheel_slip2}</slip2>
+        </friction>
+      </surface>
     </collision>
     <inertial>
       <mass value="1.0"/>
-      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+      <!-- <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/> -->
+        <inertia ixx="0.00833" ixy="0" ixz="0"
+           iyy="0.00833" iyz="0"
+           izz="0.005" />
+
     </inertial>
   </link>
 
@@ -136,6 +198,8 @@
     <origin xyz="-0.16 -0.16 0.05" rpy="0 0 0"/>
     <limit effort="100" velocity="100"/>
     <axis xyz="0 1 0"/>
+    <limit lower="0" upper="6.28" effort="100" velocity="10"/>
+
   </joint>
 
   <!-- Transmissions -->
@@ -165,10 +229,25 @@
         <cylinder radius="0.06" length="0.02"/>
       </geometry>
       <origin rpy="1.5708 0 0"/>
+      <surface>
+        <friction>
+          <fdir1>1 0 0</fdir1>
+          <kp>${wheel_kp}</kp> <!-- kp and kd for rubber -->
+          <kd>${wheel_kd}</kd>
+          <mu>${wheel_mu1}</mu>
+          <mu2>${wheel_mu2}</mu2>
+          <slip1>${wheel_slip1}</slip1>
+          <slip2>${wheel_slip2}</slip2>
+        </friction>
+      </surface>
     </collision>
     <inertial>
       <mass value="1.0"/>
-      <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/>
+      <!-- <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001"/> -->
+        <inertia ixx="0.00833" ixy="0" ixz="0"
+           iyy="0.00833" iyz="0"
+           izz="0.005" />
+
     </inertial>
   </link>
 
@@ -177,6 +256,8 @@
     <child link="rear_left_wheel"/>
     <origin xyz="-0.16 0.16 0.05" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
+    <limit lower="0" upper="6.28" effort="100" velocity="10"/>
+
   </joint>
 
   <!-- Transmissions -->
@@ -543,7 +624,7 @@
             </material>
         </visual>
         <inertial>
-            <mass value="0.001" />
+            <mass value="0.1" />
             <origin xyz="0 0 0" rpy="0 0 0"/>
             <inertia ixx="0.00000015" ixy="0" ixz="0" iyy="0.00000015" iyz="0" izz="0.00000015" />
         </inertial>
