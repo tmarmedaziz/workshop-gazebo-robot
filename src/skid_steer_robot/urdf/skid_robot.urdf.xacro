@@ -137,7 +137,7 @@
   <joint name="front_left_wheel_joint" type="continuous">
     <parent link="base_link"/>
     <child link="front_left_wheel"/>
-    <origin xyz="0.16 0.16 0.05" rpy="0 0 0"/>
+    <origin xyz="0.16 0.16 0.02" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
     <limit lower="0" upper="6.28" effort="100" velocity="10"/>
 
@@ -195,7 +195,7 @@
   <joint name="rear_right_wheel_joint" type="continuous">
     <parent link="base_link"/>
     <child link="rear_right_wheel"/>
-    <origin xyz="-0.16 -0.16 0.05" rpy="0 0 0"/>
+    <origin xyz="-0.16 -0.16 0.02" rpy="0 0 0"/>
     <limit effort="100" velocity="100"/>
     <axis xyz="0 1 0"/>
     <limit lower="0" upper="6.28" effort="100" velocity="10"/>
@@ -254,7 +254,7 @@
   <joint name="rear_left_wheel_joint" type="continuous">
     <parent link="base_link"/>
     <child link="rear_left_wheel"/>
-    <origin xyz="-0.16 0.16 0.05" rpy="0 0 0"/>
+    <origin xyz="-0.16 0.16 0.02" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
     <limit lower="0" upper="6.28" effort="100" velocity="10"/>
 
@@ -276,7 +276,7 @@
   </link>
 
   <joint name="base_footprint_joint" type="fixed">
-    <origin xyz="0.0 0.0 0.0" rpy="0 0 0" />
+    <origin xyz="0.0 0.0 0.02" rpy="0 0 0" />
     <parent link ="base_footprint"/>
     <child link ="base_link"/>
   </joint>
@@ -404,7 +404,7 @@
   <gazebo>
     <plugin name="skid_steer_drive_controller" filename="libgazebo_ros_skid_steer_drive.so">
       <!-- Update rate of the plugin in Hz -->
-      <updateRate>30.0</updateRate>
+      <updateRate>100.0</updateRate>
 
       <!-- Namespace for the robot in ROS -->
       <robotNamespace>/</robotNamespace>
@@ -425,7 +425,7 @@
       <robotBaseFrame>base_footprint</robotBaseFrame>
 
       <!-- Maximum torque applied to the wheels -->
-      <torque>20</torque>
+      <torque>50</torque>
 
       <!-- ROS topic for receiving velocity commands -->
       <topicName>cmd_vel</topicName>

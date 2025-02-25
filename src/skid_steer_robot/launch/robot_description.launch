@@ -16,15 +16,13 @@
 
   <!-- Send robot states to tf -->
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" >
-      <param name="publish_frequency" value="30"/>
   </node>
 
   <!-- Send  joint values-->
   <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
 
   <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
-      <!-- <param name="rate" value="30"/>
-      <param name="use_gui" value="true"/> -->
+    <param name="use_gui" value="true"/>
   </node>
 
 
@@ -38,7 +36,7 @@
 
   <node pkg="tf" type="static_transform_publisher" name="base_footprint_to_base_link" args="0.0 0.0 0.0 0 0 0.0 base_footprint base_link 30" />
   <!-- <node name="tf_dynamic_node" pkg="skid_steer_robot" type="tf_dynamic_odom_baselink.py" output="screen"></node> -->
-  <node name="tf_dynamic_node_wheels_frames" pkg="skid_steer_robot" type="tf_dynamic_wheels.py" output="screen"></node>
+  <!-- <node name="tf_dynamic_node_wheels_frames" pkg="skid_steer_robot" type="tf_dynamic_wheels.py" output="screen"></node> -->
 
 
   <!-- Spawn My Robot -->
