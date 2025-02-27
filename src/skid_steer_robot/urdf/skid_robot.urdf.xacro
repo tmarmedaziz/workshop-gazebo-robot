@@ -4,8 +4,8 @@
   
   <xacro:property name="wheel_kp" value="1000000.0" />
   <xacro:property name="wheel_kd" value="100.0" />
-  <xacro:property name="wheel_mu1" value="100" />
-  <xacro:property name="wheel_mu2" value="100" />
+  <xacro:property name="wheel_mu1" value="1000" />
+  <xacro:property name="wheel_mu2" value="1000" />
   <xacro:property name="wheel_slip1" value="0.5" />
   <xacro:property name="wheel_slip2" value="0" />
 
@@ -64,6 +64,11 @@
           <slip1>${wheel_slip1}</slip1>
           <slip2>${wheel_slip2}</slip2>
         </friction>
+        <contact>
+          <ode>
+            <min_depth>0.003</min_depth>
+          </ode>
+        </contact>
       </surface>
     </collision>
     <inertial>
@@ -81,8 +86,6 @@
     <child link="front_right_wheel"/>
     <origin xyz="0.16 -0.16 0.05" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
-    <limit lower="0" upper="6.28" effort="100" velocity="10"/>
-
   </joint>
 
   <!-- Transmissions -->
@@ -122,6 +125,11 @@
           <slip1>${wheel_slip1}</slip1>
           <slip2>${wheel_slip2}</slip2>
         </friction>
+        <contact>
+          <ode>
+            <min_depth>0.003</min_depth>
+          </ode>
+        </contact>
       </surface>
     </collision>
     <inertial>
@@ -139,8 +147,6 @@
     <child link="front_left_wheel"/>
     <origin xyz="0.16 0.16 0.02" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
-    <limit lower="0" upper="6.28" effort="100" velocity="10"/>
-
   </joint>
 
   <!-- Transmissions -->
@@ -180,6 +186,11 @@
           <slip1>${wheel_slip1}</slip1>
           <slip2>${wheel_slip2}</slip2>
         </friction>
+        <contact>
+          <ode>
+            <min_depth>0.003</min_depth>
+          </ode>
+        </contact>
       </surface>
     </collision>
     <inertial>
@@ -198,8 +209,6 @@
     <origin xyz="-0.16 -0.16 0.02" rpy="0 0 0"/>
     <limit effort="100" velocity="100"/>
     <axis xyz="0 1 0"/>
-    <limit lower="0" upper="6.28" effort="100" velocity="10"/>
-
   </joint>
 
   <!-- Transmissions -->
@@ -239,6 +248,11 @@
           <slip1>${wheel_slip1}</slip1>
           <slip2>${wheel_slip2}</slip2>
         </friction>
+        <contact>
+          <ode>
+            <min_depth>0.003</min_depth>
+          </ode>
+        </contact>
       </surface>
     </collision>
     <inertial>
@@ -256,8 +270,6 @@
     <child link="rear_left_wheel"/>
     <origin xyz="-0.16 0.16 0.02" rpy="0 0 0"/>
     <axis xyz="0 1 0"/>
-    <limit lower="0" upper="6.28" effort="100" velocity="10"/>
-
   </joint>
 
   <!-- Transmissions -->
